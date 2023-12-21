@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from "../../assets/images/login.png";
 import googleImg from "../../assets/images/google.png";
 import { useContext, useState } from "react";
@@ -12,6 +12,7 @@ const Login = () => {
   const { loginUser, googleAuth } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogIn = (e) => {
     e.preventDefault();
@@ -24,7 +25,9 @@ const Login = () => {
     loginUser(email, password)
       .then(() => {
         Swal.fire("Awesome!!", "Login Successful !", "success");
-        navigate("/");
+        const intendedDestination =
+          (location.state && location.state.from) || "/";
+        navigate(intendedDestination);
       })
       .catch((error) => {
         setError(error.code);
@@ -36,7 +39,9 @@ const Login = () => {
     googleAuth()
       .then(() => {
         Swal.fire("Woohoo!!", "Registration Successful !", "success");
-        navigate("/");
+        const intendedDestination =
+          (location.state && location.state.from) || "/";
+        navigate(intendedDestination);
       })
       .catch();
   };
@@ -63,7 +68,7 @@ const Login = () => {
                     type="email"
                     name="email"
                     id="email"
-                    className="border-2 border-red-500 text-gray-900 text-sm rounded-lg  block w-full p-2.5  font-bold "
+                    className="w-72 relative rounded-full pl-5 font-bold border-2 border-[#e93f58] focus:border-[#e93f58] outline-none py-2"
                     placeholder="name@company.com"
                     required=""
                   />
@@ -79,18 +84,18 @@ const Login = () => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="border-2 border-red-500 text-gray-900 text-sm rounded-lg  block w-full p-2.5  font-bold "
+                    className="w-72 relative rounded-full pl-5 font-bold border-2 border-[#e93f58] focus:border-[#e93f58] outline-none py-2"
                     required=""
                   />
-                  <div
+                  <button
                     onClick={() => setShow(!show)}
-                    className="absolute cursor-pointer ml-72 -mt-7">
+                    className="-ml-10 mt-3 absolute text-lg ">
                     {show ? (
                       <BiSolidHide></BiSolidHide>
                     ) : (
                       <BiSolidShow></BiSolidShow>
                     )}
-                  </div>
+                  </button>
                 </div>
 
                 <button
