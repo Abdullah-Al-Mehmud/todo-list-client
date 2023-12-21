@@ -64,12 +64,16 @@ const Navbar = () => {
               </div>
               {/* login and register */}
               <div className="flex gap-5">
-                <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
-                  Login
-                </button>
-                <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white ">
-                  Register
-                </button>
+                <Link to="/login">
+                  <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
+                    Login
+                  </button>
+                </Link>
+                <Link to="/register">
+                  <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
+                    Register
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const HeroSection = () => {
   return (
     <div className="bg-[url('./assets/images/bgImg.jpg')]  bg-cover bg-no-repeat bg-top  h-screen">
@@ -20,6 +22,11 @@ const HeroSection = () => {
               timely reminders. It's time to take control – start your journey
               with DO_IT today!
             </p>
+            <Link to="/dashboard/dashboardHome">
+              <button className="mt-5 bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
+                {`Let's Explore`}
+              </button>
+            </Link>
           </div>
           <div className="md:w-full"></div>
         </div>
