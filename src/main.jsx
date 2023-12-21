@@ -4,9 +4,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./layout/Root.jsx";
+
+import DashboardHome from "./pages/Dashboard/DashboardHome/DashboardHome.jsx";
 import Dashboard from "./layout/Dashboard.jsx";
-import DashboardHome from "./assets/pages/Dashboard/DashboardHome/DashboardHome.jsx";
-import Home from "./assets/pages/Home/Home.jsx";
+import Home from "./pages/Home/Home.jsx";
 
 const router = createBrowserRouter([
   {

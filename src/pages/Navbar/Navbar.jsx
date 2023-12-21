@@ -1,17 +1,32 @@
+import { Link } from "react-router-dom";
+import logo from "../../assets/images/ToDo List.png";
+
 const Navbar = () => {
   const links = (
     <>
-      <li>
-        <a>Sidebar Item 1</a>
+      <li className="font-bold text-lg">
+        <Link
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "bg-[#dc4c3e]" : ""
+          }>
+          Home
+        </Link>
       </li>
-      <li>
-        <a>Sidebar Item 2</a>
+      <li className="font-bold text-lg">
+        <Link
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "bg-[#dc4c3e]" : ""
+          }>
+          Reviews
+        </Link>
       </li>
     </>
   );
   return (
     <>
-      <div className="drawer">
+      <div className="drawer fixed z-10 bg-black bg-opacity-20 md:px-20 py-2">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
@@ -34,20 +49,27 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2 font-bold text-2xl text-[#dc4c3e]">
-              Task Management
+            <div className="flex-1  px-2 mx-2 font-bold md:text-2xl text-white">
+              <Link to="/" className="flex gap-2 items-center">
+                <img className="w-12" src={logo} alt="" />
+                DO_IT
+              </Link>
             </div>
-            <div className="flex gap-10">
+            <div className="flex gap-28">
               <div className="flex-none hidden lg:block">
-                <ul className="menu menu-horizontal">
+                <ul className="flex text-white items-center gap-5 menu-horizontal">
                   {/* Navbar menu content here */}
                   {links}
                 </ul>
               </div>
               {/* login and register */}
               <div className="flex gap-5">
-                <button className="bg-[#dc4c3e]">Login</button>
-                <button className="bg-[#dc4c3e]">Login</button>
+                <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
+                  Login
+                </button>
+                <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white ">
+                  Register
+                </button>
               </div>
             </div>
           </div>
