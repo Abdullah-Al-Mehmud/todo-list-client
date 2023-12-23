@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/ToDo List.png";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOutUser().then().catch();
+  };
   const links = (
     <>
       <li className="font-bold text-lg">
@@ -19,7 +25,7 @@ const Navbar = () => {
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "bg-[#dc4c3e]" : ""
           }>
-          Reviews
+          About Us
         </Link>
       </li>
     </>
@@ -64,16 +70,28 @@ const Navbar = () => {
               </div>
               {/* login and register */}
               <div className="flex gap-5">
-                <Link to="/login">
-                  <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
-                    Login
-                  </button>
-                </Link>
-                <Link to="/register">
-                  <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
-                    Register
-                  </button>
-                </Link>
+                {user ? (
+                  <Link to="/login">
+                    <button
+                      onClick={handleLogOut}
+                      className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
+                      LogOut
+                    </button>
+                  </Link>
+                ) : (
+                  <div className="flex gap-5">
+                    <Link to="/login">
+                      <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
+                        Login
+                      </button>
+                    </Link>
+                    <Link to="/register">
+                      <button className="bg-[#e94c3d] rounded-lg font-bold px-6 py-3 text-white  ">
+                        Register
+                      </button>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
