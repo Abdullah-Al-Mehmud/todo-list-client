@@ -12,6 +12,16 @@ import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import AuthProvider from "./AuthProvider/AuthProvider.jsx";
 import PrivateRoute from "./Routes/PrivateRoute.jsx";
+import AddTask from "./pages/Dashboard/AddTask/AddTask.jsx";
+
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+import UpdateTodo from "./pages/Dashboard/DashboardHome/UpdateTodo/UpdateTodo.jsx";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -48,14 +58,34 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "addTask",
+        element: (
+          <PrivateRoute>
+            <AddTask></AddTask>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "updateTodo/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateTodo></UpdateTodo>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/todo/${params.id}`),
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

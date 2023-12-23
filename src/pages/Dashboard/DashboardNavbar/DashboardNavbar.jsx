@@ -1,12 +1,48 @@
+import { useContext } from "react";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { IoIosAddCircle } from "react-icons/io";
+import { Link } from "react-router-dom";
+
 const DashboardNavbar = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+  console.log(user);
+  const handleLogout = () => {
+    logOutUser().then().catch();
+  };
   const links = (
     <>
-      <li>
-        <a>Sidebar Item 1</a>
-      </li>
-      <li>
-        <a>Sidebar Item 2</a>
-      </li>
+      <div className="dropdown dropdown-end">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
+            <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+          </div>
+        </div>
+        <ul
+          tabIndex={0}
+          className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+          <li>
+            <a className="justify-between capitalize">{user?.displayName}</a>
+          </li>
+
+          <li>
+            <a onClick={handleLogout}>Logout</a>
+          </li>
+        </ul>
+      </div>
+      {/* menu */}
+      {/* lists */}
+      <div className="mt-4 font-bold text-lg">
+        <h1>Tasks</h1>
+        <li>
+          <Link to="/dashboard/addTask">
+            {" "}
+            <IoIosAddCircle className="text-red-500" size="25" /> Add Task
+          </Link>
+        </li>
+      </div>
     </>
   );
   return (
