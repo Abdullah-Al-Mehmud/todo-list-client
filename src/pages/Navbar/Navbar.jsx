@@ -28,6 +28,15 @@ const Navbar = () => {
           About Us
         </Link>
       </li>
+      <li className="font-bold text-lg">
+        <Link
+          to="/dashboard/dashboardHome"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-[#dc4c3e]" : ""
+          }>
+          Dashboard
+        </Link>
+      </li>
     </>
   );
   return (
