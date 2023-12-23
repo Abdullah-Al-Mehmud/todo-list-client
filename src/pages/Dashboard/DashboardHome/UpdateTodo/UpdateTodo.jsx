@@ -1,12 +1,34 @@
+import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateTodo = () => {
   const { _id, title, priority, description, date } = useLoaderData();
+  const navigate = useNavigate();
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+
+    const updateTodo = {
+      title: data.title,
+      priority: data.priority,
+      date: data.date,
+      description: data.description,
+    };
+    axios.put(`http://localhost:3000/todo/${_id}`, updateTodo).then((res) => {
+      if (res.data.modifiedCount === 1) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Updated Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/dashboard/dashboardHome");
+      }
+    });
   };
   return (
     <div>
@@ -20,7 +42,7 @@ const UpdateTodo = () => {
               <div className="md:w-1/2">
                 <input
                   type="text"
-                  {...register("title", { required: true })}
+                  {...register("title")}
                   defaultValue={title}
                   placeholder="Title"
                   className="input input-bordered border-2 border-main-blue-300 rounded-lg w-full "
@@ -28,7 +50,7 @@ const UpdateTodo = () => {
               </div>
               <div className="md:w-1/2">
                 <select
-                  {...register("priority", { required: true })}
+                  {...register("priority")}
                   defaultValue={priority}
                   className="select select-bordered border-2 border-main-blue-300 rounded-lg w-full ">
                   <option disabled defaultValue>
@@ -45,7 +67,7 @@ const UpdateTodo = () => {
               <div className="w-full mt-4">
                 <input
                   type="datetime-local"
-                  {...register("date", { required: true })}
+                  {...register("date")}
                   defaultValue={date}
                   className="input input-bordered border-2 border-main-blue-300 rounded-lg w-full "
                 />
@@ -58,7 +80,7 @@ const UpdateTodo = () => {
                 <textarea
                   placeholder="Description"
                   className="input py-2 h-40 input-bordered w-full border-2 border-main-blue-300 rounded-lg"
-                  {...register("description", { required: true })}
+                  {...register("description")}
                   defaultValue={description}
                 />
               </div>
