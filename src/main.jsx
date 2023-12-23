@@ -20,6 +20,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import UpdateTodo from "./pages/Dashboard/DashboardHome/UpdateTodo/UpdateTodo.jsx";
+import AboutUs from "./pages/AboutUs/AboutUs.jsx";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/aboutUs",
+        element: <AboutUs></AboutUs>,
       },
     ],
   },

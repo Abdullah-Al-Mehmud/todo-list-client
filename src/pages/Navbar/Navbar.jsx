@@ -14,16 +14,16 @@ const Navbar = () => {
         <Link
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "bg-[#dc4c3e]" : ""
+            isPending ? "pending" : isActive ? "text-[#dc4c3e]" : ""
           }>
           Home
         </Link>
       </li>
       <li className="font-bold text-lg">
         <Link
-          to="/"
+          to="/aboutUs"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "bg-[#dc4c3e]" : ""
+            isPending ? "pending" : isActive ? "text-[#dc4c3e]" : ""
           }>
           About Us
         </Link>
