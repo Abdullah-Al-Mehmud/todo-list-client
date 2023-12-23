@@ -34,13 +34,23 @@ const DashboardNavbar = () => {
       </div>
       {/* menu */}
       {/* lists */}
+
       <div className="mt-4 font-bold text-lg">
+        <li>
+          <Link to="/dashboard/dashboardHome"> Dashboard Home</Link>
+        </li>
+
         <h1>Tasks</h1>
         <li>
           <Link to="/dashboard/addTask">
             {" "}
             <IoIosAddCircle className="text-red-500" size="25" /> Add Task
           </Link>
+        </li>
+      </div>
+      <div className="mt-16 font-bold text-lg">
+        <li>
+          <Link to="/"> Home</Link>
         </li>
       </div>
     </>
